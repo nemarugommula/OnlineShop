@@ -10,3 +10,5 @@ export default [
     "https://picsum.photos/1280/768?random=9",
     "https://picsum.photos/1280/768?random=10"
 ]
+
+//vscode://vscode.github-authentication/did-authenticate?windowid=4&code=d60e991c655e9bcde704&state=ac81f1d9-6e5c-486b-aead-41b4263075af
