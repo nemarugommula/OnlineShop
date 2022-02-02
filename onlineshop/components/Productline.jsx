@@ -9,7 +9,7 @@ function Productline({lineTag,products}) {
             <button className="bg-primary text-stone-100 p-2 shadow-sm">View All</button>
             </div>
             <div className="flex overflow-x-hidden ">
-            {products.map(product =><Card product={product} />)}
+            {products.map((product,index) =><Card key={index} product={product} />)}
             </div>
         </section>            
     )

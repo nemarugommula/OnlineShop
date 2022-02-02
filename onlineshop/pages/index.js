@@ -39,6 +39,7 @@ export default function Home() {
           "Recently viewed",
         ].map((tag) => (
           <Productline
+            key={tag}
             lineTag={tag}
             products={[
               "a",
