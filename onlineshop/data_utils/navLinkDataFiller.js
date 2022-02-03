@@ -1,38 +1,35 @@
 export default [
+
   {
-    label: "Grocery",
-    icon:"",
-    iconleft: "",
-    type: "button",
-  },
-  {
-    label: "Profile",
-    icon: "",
+    label: "Vishnu",
+    iconRight:"",
+    iconLeft: "",
     type: "dropdown",
     dropdown: [
-      { primaryLabel: "one", "count" : "2" },
-      { primaryLabel: "two", "count" : "2" },
-      { primaryLabel: "three", "count" : "2" },
-      { primaryLabel: "four", "count" : "2" },
-      { primaryLabel: "five", "count" : "2" },
-      { primaryLabel: "six", "count" : "2" },
-      { primaryLabel: "seven", "count" : "2" },
-      { primaryLabel: "eight", "count" : "2" }
+      { primaryLabel: "MyProfile", count : 0 },
+      { primaryLabel: "Orders", count : 0 },
+      { primaryLabel: "Wishlist", count : 7 },
+      { primaryLabel: "My Chats", count : 0 },
+      { primaryLabel: "Coupons", count : 3 },
+      { primaryLabel: "Notifications", count : 5 },
+      { primaryLabel: "Logout", count : 0 }
     ],
   },
   {
     label: "More",
-    icon: "",
+    iconRight:"",
+    iconLeft: "",
     type: "dropdown",
     dropdown: [
-      { primaryLabel: "one", "count" : "2" },
-      { primaryLabel: "two", "count" : "2" },
-      { primaryLabel: "three", "count" : "2" },
-      { primaryLabel: "four", "count" : "2" },
-      { primaryLabel: "five", "count" : "2" },
-      { primaryLabel: "six", "count" : "2" },
-      { primaryLabel: "seven", "count" : "2" },
-      { primaryLabel: "eight", "count" : "2" }
+      { primaryLabel: "Notification Preference", count : 0 },
+      { primaryLabel: "24x7 Customer Care", count : 0 },
+      { primaryLabel: "Download App", count : 0 }
     ],
   },
+  {
+    label: "Cart",
+    iconRight:false,
+    iconLeft: true,
+    type: "button",
+  }
 ];

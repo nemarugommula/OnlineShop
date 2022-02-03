@@ -4,8 +4,8 @@ import navbarData from '../data_utils/navbarDataFiller'
 function Footer() {
     return (
         <footer className="p-2 bg-gray-800 w-full text-white">
-        <div className="flex gap-2 align-center">
-          <div className=" flex flex-1 justify-around border-r-2 border-slate-300 m-5 p-5">
+        <div className="flex flex-wrap gap-2 align-center">
+          <div className=" flex flex-1 justify-around lg:border-r-2 border-slate-300 m-5 p-5">
             {navbarData.body.left.map((navsection) => (
               <div key={navsection.heading} className="p-4">
                 <h1 className="font-bold text-slate-300 mb-2">{navsection.heading}</h1>
@@ -19,7 +19,7 @@ function Footer() {
               </div>
             ))}
           </div>
-          <div className="flex gap-5 p-5 m-5 shrink-0">
+          <div className="flex flex-wrap gap-5 p-5 m-5 shrink-0">
             {navbarData.body.right.map((navsection) => (
               <div key={navsection.heading} className="p-3">
                 <div className="">

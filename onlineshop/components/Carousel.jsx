@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 
 
-function Slider({data,apply,...props}) {
+function Slider({data=[],apply,...props}) {
     return (
         <Carousel {...props}>
             {data.map((i,index)=><img key={index} style={apply} src={i}/>)}

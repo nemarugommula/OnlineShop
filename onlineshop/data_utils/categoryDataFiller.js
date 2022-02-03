@@ -1,61 +1,22 @@
 export default [
   {
-    label: "Top Offers",
-    icon: "",
-    type: "button",
+    label: "Diabetis",
+    src: "https://images.indianexpress.com/2021/12/diabetes_1200_getty.jpg"
   },
   {
-    label: "Grocery",
-    icon: "",
-    type: "button",
+    label: "Cough",
+    src: "https://images.everydayhealth.com/images/home-remedies-to-stop-a-bad-cough-00-722x406.jpg"
   },
   {
-    label: "Mobiles",
-    icon: "",
-    type: "button",
-  },
-  {
-    label: "Fashion",
-    icon: "",
-    type: "dropdown",
-    dropdown: [
-      { primaryLabel: "one", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "two", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "three", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "four", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "five", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "six", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "seven", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "eight", list: ["test1", "test2", "test3"] },
-    ],
-  },
-  {
-    label: "Electronics",
-    icon: "",
-    type: "dropdown",
-    dropdown: [
-      { primaryLabel: "one", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "two", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "three", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "four", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "five", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "six", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "seven", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "eight", list: ["test1", "test2", "test3"] },
-    ],
-  },  {
-    label: "Home",
-    icon: "",
-    type: "dropdown",
-    dropdown: [
-      { primaryLabel: "one", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "two", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "three", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "four", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "five", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "six", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "seven", list: ["test1", "test2", "test3"] },
-      { primaryLabel: "eight", list: ["test1", "test2", "test3"] },
-    ],
-  }
-];
+    label: "Protein",
+    src: "https://mend.me/wp-content//uploads/2019/08/animal-vs.-plant-protein-e1541592159295-1.jpg" 
+   },
+   {
+     label: "Daily Essentials",
+     src: "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-06/beautiful-tasty-appetizing-ingredients-spices-grocery-cooking-healthy-kitchen-blue-old-wooden-background-top-view.jpg" 
+    },
+    {
+      label: "Weight Loss",
+      src: "https://images.indianexpress.com/2021/07/weight-loss_1200_getty-2.jpg" 
+     }
+]
