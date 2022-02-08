@@ -5,7 +5,7 @@ function Searchbar() {
  
 
   return (
-    <div  className="[width:40%] shadow-xl z-10 rounded-md">
+    <div  className="[width:40%] shadow-xl z-10">
       <div  className="group flex outline-none  relative">
         <input
           className="peer bg-slate-50 flex-1 focus:outline-none px-3 py-2"

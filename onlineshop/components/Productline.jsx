@@ -21,7 +21,7 @@ function Productline({lineTag,products}) {
             <div className="bg-primary text-stone-100 p-2 flex gap-2 align-center justify-center shadow-sm"><button>View All</button> <ArrowCircleRightIcon className="w-5 h-5 text-white"/></div>
             </div>
             <div ref={reference} className=" group relative flex overflow-x-hidden scroll-smooth flex-nowrap  snap-x">
-            {products.map((product,index) =><Card key={index} product={product} />)}
+            {products.map((product,index) =><Card key={index} product={index} />)}
             <button onClick={handle} className="py-5 px-1 h-[50%] top-1/2 -translate-y-1/2 z-10 rounded-l-md shadow-xl bg-slate-50 text-primary sticky right-0 opacity-0  group-hover:opacity-100 " >
                 <ChevronDoubleRightIcon className=" text-gray-800 h-9 w-9"/>
             </button>
