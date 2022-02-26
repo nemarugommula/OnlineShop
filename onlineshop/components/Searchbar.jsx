@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/solid";
-
+import Router, { useRouter } from "next/router";
 function Searchbar({ searchHistory = null }) {
+  const [searchKey, setSearchKey] = useState();
   return (
     <div className="[width:40%]">
       <div className="group flex outline-none  relative">
@@ -9,8 +10,19 @@ function Searchbar({ searchHistory = null }) {
           className="peer bg-slate-50 flex-1 tracking-wide outline-none px-3 py-2"
           placeholder="Search.."
           type="text"
+          onChange={(e) => setSearchKey(e.target.value)}
         />
-        <button className="bg-slate-50 px-2 focus:outline-none">
+        <button
+          onClick={() => {
+            Router.push({
+              pathname: "/filter",
+              query: {
+                searchTerm: searchKey,
+              },
+            });
+          }}
+          className="bg-slate-50 px-2 focus:outline-none"
+        >
           <SearchIcon className="h-5 w-5 text-primary" />
         </button>
         {searchHistory ? (

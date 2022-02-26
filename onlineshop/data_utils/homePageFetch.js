@@ -121,8 +121,11 @@ async function getRequireUserDetails(user_id) {
   return { ...user, cart: cartCount };
 }
 
-function useHomepageData(user_id = 1) {
-  // const user_id = "";
+function useHomepageData() {
+  let user_id;
+  if (typeof window != "undefined") {
+    user_id = localStorage.getItem("userId");
+  }
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   useEffect(async () => {
@@ -150,11 +153,16 @@ function useHomepageData(user_id = 1) {
   return [loading, data];
 }
 
-export function useUserData(user_id = 1) {
+export function useUserData() {
+  let userId;
+  if (typeof window != "undefined") {
+    userId = localStorage.getItem("userId");
+  }
+  console.log(" userId : " + userId);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   useEffect(async () => {
-    if (user_id) setUser(await getRequireUserDetails(user_id));
+    if (userId) setUser(await getRequireUserDetails(userId));
     setLoading(false);
   }, []);
   return [loading, user];

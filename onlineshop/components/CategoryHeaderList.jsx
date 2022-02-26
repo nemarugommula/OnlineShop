@@ -17,7 +17,7 @@ function CategoryHeaderList({ categories = [] }) {
             className="px-2 text-center"
             key={index}
           >
-            <Link href={"/categories/" + category.id}>
+            <Link href={"/category/" + category.id}>
               <a>
                 <img
                   className="block w-24 h-24 object-cover rounded-md shadow-sm shadow-gray-400"

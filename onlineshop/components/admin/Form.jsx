@@ -8,6 +8,13 @@ import useFetch, {
   encodeQuery,
   decodeQuery,
 } from "../../hooks/useFetch";
+
+import {
+  TrashIcon,
+  SaveAsIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/solid";
+
 import Loading from "../utils/Loading";
 import Page from "../admin/Page";
 import ImageSlideShow from "../admin/ImageSlideShow";
@@ -39,7 +46,7 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
   }
   function onDeleteHandler() {
     setOperation(true);
-    
+
     const request = requestBuilder(getAuthHeaders(), "DELETE", null, null);
     fetch(
       "http://localhost:5000/api/" + endPoint + "?id=" + router.query.id,
@@ -93,19 +100,27 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
   }, [router.query.id, operating]);
   return (
     <Layout>
-      <div className="flex items-center text-slate-50 shadow-sm mb-4 justify-end  gap-2 p-2 bg-white">
-        <button
-          onClick={onUpdateHandler}
-          className="px-2 py-1  ring-2 ring-green-500 shadow-sm text-green-500 hover:bg-green-600 hover:text-slate-50 active:bg-green-700 rounded-sm  font-semibold"
-        >
-          {operating ? "Processing " : "UPDATE"}
-        </button>
-        <button
-          onClick={onDeleteHandler}
-          className=" px-2 py-1 bg-red-600  shadow-sm hover:bg-red-700 active:bg-red-800 rounded-sm  font-semibold"
-        >
-          {operating ? "Processing " : "DELETE"}
-        </button>
+      <div className="flex items-center text-slate-50 shadow-sm mb-4 justify-between  p-2 bg-white">
+        <div className="text-gray-600 flex items-center justify-center gap-2 capitalize font-semibold text-xl">
+          <InformationCircleIcon className="w-5 h-5" />
+          <h1>{endPoint} details</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onUpdateHandler}
+            className="p-2  flex items-center justify-center gap-1 bg-green-500  hover:bg-green-600  active:bg-green-700 rounded-sm "
+          >
+            <SaveAsIcon className="w-5 h-5" />
+            {operating ? "Processing " : "Save"}
+          </button>
+          <button
+            onClick={onDeleteHandler}
+            className=" p-2 gap-1 bg-red-600  flex  items-center justify-center hover:bg-red-700 active:bg-red-800 rounded-sm "
+          >
+            <TrashIcon className="w-5 h-5" />
+            {operating ? "Processing " : "Remove"}
+          </button>
+        </div>
       </div>
       {loading ? (
         <Loading />

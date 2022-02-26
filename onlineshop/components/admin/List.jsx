@@ -6,7 +6,7 @@ import Model from "./Model";
 import Loading from "../utils/Loading";
 import Nodata from "../../components/utils/Nodata";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { PlusCircleIcon } from "@heroicons/react/solid";
 function List({
   endPoint,
   title,
@@ -53,20 +53,21 @@ function List({
 
   return (
     <>
-      <div className="bg-white  shadow-md  flex items-center  justify-between py-3">
+      <div className="bg-white  shadow-md  flex items-center  justify-between py-2">
         <h1 className="font-semibold text-lg tracking-widest uppercase pl-2">
           {title}
         </h1>
         <div className="flex gap-2 mx-2">
           <button
             onClick={activateModel}
-            className="px-4 py-1 shadow-sm shadow-orange-500 bg-orange-400 hover:bg-orange-500 active:bg-orange-600 "
+            className="px-4 py-2 tracking-widest shadow-sm flex  items-center gap-2 justify-center rounded-sm text-slate-50 bg-primary hover:bg-blue-500 active:bg-blue-600 "
           >
-            <p className="tracking-widest">CREATE</p>
+            <PlusCircleIcon className="w-5 h-5" />
+            <p className="">Add new item</p>
           </button>
         </div>
       </div>
-      <div className="relative">
+      <div className={`relative ${showModel && "blur-sm"}`}>
         {loading ? (
           <Loading />
         ) : (
@@ -81,20 +82,20 @@ function List({
             )}
           </div>
         )}
-        <AnimatePresence>
-          {showModel ? (
-            <Model
-              setReload={setReload}
-              setShowModel={setShowModel}
-              data={modelData}
-              endPoint={endPoint}
-              choiceQuery={choiceQuery}
-            />
-          ) : (
-            ""
-          )}
-        </AnimatePresence>
       </div>
+      <AnimatePresence>
+        {showModel ? (
+          <Model
+            setReload={setReload}
+            setShowModel={setShowModel}
+            data={modelData}
+            endPoint={endPoint}
+            choiceQuery={choiceQuery}
+          />
+        ) : (
+          ""
+        )}
+      </AnimatePresence>
     </>
   );
 }

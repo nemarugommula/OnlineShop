@@ -6,6 +6,7 @@ import caroseldata from "../../data_utils/campaignDataFiller";
 import useUserData from "../../data_utils/homePageFetch";
 import ProductLine from "../../components/Productline";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import useFetch, {
   requestBuilder,
   getAuthHeaders,
@@ -19,6 +20,7 @@ function Review({
   user_id,
   product_id,
 }) {
+  console.log(" user_id : " + user_id + "product_id : " + product_id);
   return (
     <div className="absolute z-100 top-10 bg-slate-50 shadow-sm shadow-primary p-4">
       <div className="flex justify-between border-b py-4 items-center">
@@ -59,15 +61,7 @@ function Review({
         <button
           className="bg-primary px-3 py-3 rounded-sm shadow-sm shadow-primary text-white tracking-widest"
           onClick={() => {
-            setModalData((prev) => {
-              return {
-                ...prev,
-                user_id: user_id,
-                product_id: product_id,
-              };
-            });
-
-            submitModalHandler();
+            submitModalHandler(user_id, product_id);
           }}
         >
           Submit Review
@@ -117,7 +111,7 @@ function Product() {
       .then((res) => {
         setImages(res);
       });
-  }, [router]);
+  }, [router, user]);
 
   function giveReviewHandler() {
     setShowModal(true);
@@ -162,10 +156,15 @@ function Product() {
     addToCart(reqBody, true);
   }
 
-  function submitModalHandler() {
+  function submitModalHandler(user_id, product_id) {
+    const userId = user_id || user.id;
+    const productId = product_id || data.id;
     const reqBody = {
       ...modalData,
+      product_id: productId,
+      user_id: userId,
     };
+    console.log(" req body : " + JSON.stringify(reqBody));
     const request = requestBuilder(getAuthHeaders(), "POST", null, reqBody);
     fetch("http://localhost:5000/api/product_review", request)
       .then((response) => response.json())
@@ -191,7 +190,7 @@ function Product() {
               submitModalHandler={submitModalHandler}
               setModalData={setModalData}
               setShowModal={setShowModal}
-              user_id={1}
+              user_id={user.id}
               product_id={data.id}
             />
           ) : (
@@ -323,7 +322,9 @@ function Product() {
             </div>
 
             <div className="text-right px-1 py-2 text-primary">
-              <p>View reviews {">>>"}</p>
+              <Link href={`/review/${router.query.id}`}>
+                <a>View reviews {">>>"}</a>
+              </Link>
             </div>
           </div>
         </main>

@@ -5,6 +5,7 @@ import useFetch, { requestBuilder, getAuthHeaders } from "../../hooks/useFetch";
 import { motion } from "framer-motion";
 import Capture from "../admin/util/Capture";
 import formatLabel from "../admin/util/formatter";
+import { XIcon } from "@heroicons/react/solid";
 
 function Model({
   data = [],
@@ -48,17 +49,16 @@ function Model({
     <motion.div
       initial={{ top: "-100px", opacity: 0 }}
       animate={{ top: "100px", opacity: 1 }}
-      transition={{ type: "spring", stiffness: 100 }}
-      exit={{ opacity: 0, top: "-100px" }}
-      className="shadow-md rounded-md absolute  px-4 py-4 z-10 top-10 left-0 right-0 w-[50%] bg-white mx-auto shadow-primary
+      exit={{ opacity: 0 }}
+      className="shadow-md blur-none rounded-md absolute  px-4 py-4 z-10 top-10 left-0 right-0 w-[50%] bg-white mx-auto shadow-primary
         "
     >
       <div className="flex justify-end">
         <button
           onClick={onCloseHanlder}
-          className=" right-3 text-2xl text-primary tracking-widest"
+          className=" right-3 text-2xl text-primary tracking-widest hover:bg-slate-200 active:bg-primary active:text-white p-2 rounded-md "
         >
-          X
+          <XIcon className="w-10 h-10" />
         </button>
       </div>
       {data

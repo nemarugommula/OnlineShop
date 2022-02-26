@@ -29,7 +29,7 @@ const includeRelationQuery = {
 
 function Products() {
   return (
-    <Layout>
+    <Layout active="Products">
       <List
         endPoint="products"
         title="Products"

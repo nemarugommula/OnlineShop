@@ -44,6 +44,17 @@ function Navbar() {
         url: "/profile/" + user.id,
         count: 0,
       },
+      {
+        label: "Logout",
+        url: "",
+        code: () => {
+          localStorage.removeItem("authorization");
+          localStorage.removeItem("userId");
+          console.log(" logout ");
+          router.reload(window.location.pathname);
+        },
+        count: 0,
+      },
     ];
 
     navObject["dropdown"] = linkData;
@@ -85,30 +96,41 @@ function Navbar() {
                 <ChevronUpIcon className=" h-5 w-5 hidden group-focus:block text-white" />
                 <ChevronDownIcon className=" h-5 w-5  group-focus:hidden text-white" />
               </div>
-              <div className="mt-3 absolute -translate-x-1/2 left-1/2 rounded-md font-light  text-sm shadow-md   hidden group-focus:block">
-                <ul className="bg-slate-50 text-gray-900">
-                  {user.navObject.dropdown.map((item, index) => (
-                    <Link key={index} href={item.url}>
-                      <li className="last-of-type:min-w-[10em] p-2 hover:bg-slate-200 active:bg-slate-400">
-                        <a>
-                          {item.label}
-                          {item.count ? (
-                            <span className="bg-slate-200 ml-2 px-1 rounded-full">
-                              {item.count}
-                            </span>
-                          ) : (
-                            ""
-                          )}
-                        </a>
-                      </li>
-                    </Link>
-                  ))}
-                </ul>
+              <div className="mt-3 absolute -translate-x-1/2 left-1/2 rounded-md font-light  text-sm shadow-md  hidden  group-focus:block">
+                <div className="bg-slate-50  text-gray-900">
+                  {user.navObject.dropdown.map((item, index) =>
+                    item.code ? (
+                      <button
+                        className="py-2 hover:bg-slate-200 w-full active:bg-slate-300"
+                        onClick={() => item.code()}
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <Link key={index} href={item.url}>
+                        <div className="last-of-type:min-w-[10em] p-2 hover:bg-slate-200 active:bg-slate-400">
+                          <a>
+                            {item.label}
+                            {item.count ? (
+                              <span className="bg-slate-200 ml-2 px-1 rounded-full">
+                                {item.count}
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </a>
+                        </div>
+                      </Link>
+                    )
+                  )}
+                </div>
               </div>
             </button>
           ) : (
             <button className="hover:bg-orange-600 active:bg-orange-700 py-2 bg-orange-500 px-5 rounded-sm">
-              Login
+              <Link href="/account/login">
+                <a>Login</a>
+              </Link>
             </button>
           )}
 

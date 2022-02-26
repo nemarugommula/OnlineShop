@@ -4,6 +4,12 @@ import { requestBuilder, getAuthHeaders } from "../../hooks/useFetch";
 import Loading from "../utils/Loading";
 import { motion } from "framer-motion";
 
+import {
+  UploadIcon,
+  PhotographIcon,
+  ClipboardCopyIcon,
+} from "@heroicons/react/solid";
+
 function ImageSlideShow({
   table_name,
   record_id,
@@ -163,10 +169,12 @@ function ImageSlideShow({
   }
 
   return (
-    <div className="border">
-      <div className="flex bg-slate-50 justify-between p-2 items-center">
-        <h1 className="text-xl font-light">Product Images</h1>
-
+    <div className="border-t">
+      <div className="flex bg-slate-50 justify-between p-3 items-center">
+        <div className="text-gray-600 flex items-center justify-center gap-2 capitalize font-semibold text-xl">
+          <PhotographIcon className="w-5 h-5" />
+          <h1>Images</h1>
+        </div>
         <div className="flex gap-2 items-center ">
           <input
             ref={fileRef}
@@ -178,9 +186,10 @@ function ImageSlideShow({
           {!showImageGallery.canCampaign ? (
             <button
               onClick={setCampaignHandler}
-              className="px-3 py-2 tracking-widest font-light ring-1  ring-primary hover:text-white active:text-orange hover:bg-blue-600 active:bg-blue-700 text-primary"
+              className="px-3 py-2 gap-2 tracking-widest rounded-sm flex items-center justify-center font-light ring-1  ring-primary hover:text-white active:text-orange hover:bg-blue-600 active:bg-blue-700 text-primary"
             >
-              Make this as a campaign
+              <PhotographIcon className="w-5 h-5" />
+              <h3>Create Campaign</h3>
             </button>
           ) : (
             ""
@@ -188,17 +197,19 @@ function ImageSlideShow({
 
           <button
             onClick={setDefaultHandler}
-            className="p-2 bg-primary text-white rounded-sm tracking-widest
-            hover:bg-blue-500 active:bg-blue-600 shadow-sm shadow-primary
+            className="p-2 flex items-center justify-center  gap-2 bg-primary text-white rounded-sm tracking-widest
+            hover:bg-blue-600 active:bg-blue-700 shadow-sm shadow-primary
             "
           >
-            Make this image default to {showImageGallery.title}
+            <ClipboardCopyIcon className="w-5 h-5" />
+            <h3> Apply to {showImageGallery.title}</h3>
           </button>
           <button
             onClick={imageUploadHandler}
-            className="p-2 bg-green-500 hover:bg-green-600 active:bg-green-700 shadow-sm shadow-green-500 rounded-sm tracking-widest"
+            className="p-2 bg-green-500 flex items-center justify-center hover:bg-green-600 active:bg-green-700 shadow-sm shadow-green-500 rounded-sm tracking-widest"
           >
-            Upload Image
+            <UploadIcon className="w-5 h-5" />
+            <h1> Upload Image</h1>
           </button>
           <button
             onClick={imageDeleteHandler}
@@ -209,8 +220,10 @@ function ImageSlideShow({
         </div>
       </div>
       <div className=" justify-start p-5 flex flex-wrap gap-2 mt-2">
-        {loading ? (
-          <Loading />
+        {imageData && imageData.length == 0 ? (
+          <div className="w-full flex justify-center justify-center">
+            <img src="/image_empty.svg" className="w-96" />
+          </div>
         ) : (
           imageData.map((imgRecord, index) => {
             return (
