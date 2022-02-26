@@ -1,35 +1,38 @@
-export default [
+export default {
+  0:{
 
-  {
-    label: "Vishnu",
-    iconRight:"",
-    iconLeft: "",
-    type: "dropdown",
-    dropdown: [
-      { primaryLabel: "MyProfile", count : 0 },
-      { primaryLabel: "Orders", count : 0 },
-      { primaryLabel: "Wishlist", count : 7 },
-      { primaryLabel: "My Chats", count : 0 },
-      { primaryLabel: "Coupons", count : 3 },
-      { primaryLabel: "Notifications", count : 5 },
-      { primaryLabel: "Logout", count : 0 }
-    ],
   },
-  {
+
+  1 : {
     label: "More",
-    iconRight:"",
-    iconLeft: "",
     type: "dropdown",
     dropdown: [
-      { primaryLabel: "Notification Preference", count : 0 },
-      { primaryLabel: "24x7 Customer Care", count : 0 },
-      { primaryLabel: "Download App", count : 0 }
+      { primaryLabel: "24x7 Customer Care", count : 0,url:'' },
+      { primaryLabel: "Download App", count : 0 ,url:''}
     ],
   },
-  {
+  2 : {
     label: "Cart",
-    iconRight:false,
-    iconLeft: true,
+    count:0,
     type: "button",
+    url:''
   }
-];
+};
+
+
+/*
+
+user object
+ {
+    label: '',
+    type: "dropdown",
+    dropdown: [
+      { primaryLabel: "MyProfile", count : 0 ,url:''},
+      { primaryLabel: "Orders", count : 0 ,url:''},
+      { primaryLabel: "Wishlist", count : 0 ,url:''},
+      { primaryLabel: "Logout", count : 0 ,url:''}
+    ],
+  },
+
+
+*/

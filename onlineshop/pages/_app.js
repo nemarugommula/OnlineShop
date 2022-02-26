@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import React from "react";
+import OnlineStore from "../context/globalContext";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <OnlineStore.Provider>
+      <Component {...pageProps} />
+    </OnlineStore.Provider>
+  );
 }
 
-export default MyApp
+export default MyApp;
