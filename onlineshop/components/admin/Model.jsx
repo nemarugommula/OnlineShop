@@ -18,7 +18,7 @@ function Model({
 
   function onSubmitHandler() {
     const request = requestBuilder(getAuthHeaders(), "POST", null, reqBody);
-    fetch("http://localhost:5000/api/" + endPoint, request)
+    fetch("https://shopfortyfive.herokuapp.com/api/" + endPoint, request)
       .then((res) => res.json())
       .then((response) => {
         setShowModel(false);

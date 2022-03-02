@@ -31,7 +31,7 @@ function Filter() {
   const request = requestBuilder(getAuthHeaders(), "GET", null, null);
 
   useEffect(() => {
-    let url = "http://localhost:5000/api/products";
+    let url = "https://shopfortyfive.herokuapp.com/api/products";
 
     let searchKey = "";
     if (router.query.searchTerm) searchKey = router.query.searchTerm;

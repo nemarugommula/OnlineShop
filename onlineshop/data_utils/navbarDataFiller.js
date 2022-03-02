@@ -33,7 +33,7 @@ export default {
     right: [
       {
         heading: "Mail Us",
-        list: ["abc@gmail.com", "ykc@gmail.com"],
+        list: ["abc@gmail.com", "two@gmail.com"],
       },
       {
         heading: "Registered Office Adress",

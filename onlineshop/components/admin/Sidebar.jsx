@@ -16,6 +16,7 @@ import {
   LogoutIcon,
 } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 function getObj(label, url, icon) {
   return {
     label,
@@ -29,7 +30,7 @@ function Sidebar({ active }) {
   const [laoding, user] = useUserData();
   return (
     <div className="relative h-screen bg-primary  min-w-[200px] text-slate-50">
-      <div className=" flex justify-center items-center p-5">
+      <div className=" flex justify-center items-center p-10">
         <Link href="/">
           <a className=" flex gap-1 items-center justify-center">
             <h1 className="text-2xl text-slate-50 tracking-tight font-extrabold	">
@@ -55,19 +56,18 @@ function Sidebar({ active }) {
           getObj("Site", "/", "ExternalLinkIcon"),
         ].map((item, index) => {
           return (
-            <li
-              className={`hover:bg-blue-600 tracking-widest active:bg-blue-700 text-center p-5 hover:shadow-sm  ${
-                active == item.label ? "text-orange-500 bg-blue-600" : ""
-              }`}
-              key={index}
-            >
-              <Link href={`${item.url}`}>
-                <a className="flex items-center ">
+            <Link key={index} href={`${item.url}`}>
+              <li
+                className={`hover:bg-blue-600 tracking-widest active:bg-blue-700 cursor-pointer text-center p-5 hover:shadow-sm  ${
+                  active == item.label ? "text-orange-500 bg-blue-600" : ""
+                }`}
+              >
+                <a className="flex items-center gap-3 ">
                   {getTailwindIcon(item.icon)}
-                  <p className="flex-1 text-left"> {item.label}</p>
+                  <label className="flex-1 cursor-pointer text-left"> {item.label}</label>
                 </a>
-              </Link>
-            </li>
+              </li>
+            </Link>
           );
         })}
       </ul>
@@ -75,20 +75,23 @@ function Sidebar({ active }) {
         <Avatar picture={user && user.picture} />
         <div className="font-semibold items-end text-xl tracking-widest">
           <h1>{user && user.username}</h1>
-          <button
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
             onClick={() => {
               localStorage.removeItem("authorization");
               localStorage.removeItem("userId");
               console.log(" logout ");
               router.reload(window.location.pathname);
             }}
-            className="group-hover:block hover:bg-orange-600 active:bg-orange-700 bg-orange-500 hidden absolute top-0 right-0 bottom-0 left-0"
+            className="group-hover:block hover:bg-white active:bg-slate-100 text-black hidden absolute top-0 right-0 bottom-0 left-0"
           >
             <div className="flex gap-2 items-center justify-center">
               <h3 className="tracking-wide">LOGOUT</h3>{" "}
-              <LogoutIcon className="w-6 h-6 text-black  " />
+              <LogoutIcon className="w-6 h-6 text-primary  " />
             </div>
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

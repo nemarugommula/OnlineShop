@@ -3,7 +3,7 @@ import Layout from "../../../components/admin/Layout";
 
 function Users() {
   return (
-    <Layout>
+    <Layout active="Users">
       <List endPoint="users" title="Users" />
     </Layout>
   );

@@ -3,7 +3,15 @@ import Capture from "../admin/util/Capture";
 import formatLabel from "../admin/util/formatter";
 const readOnly = ["created_at", "modified_at", "id", "picture"];
 
-function Field({ label, value, disabled, setNewData, fieldsObj, choiceQuery }) {
+function Field({
+  label,
+  value,
+  disabled,
+  setNewData,
+  fieldsObj,
+  choiceQuery,
+  parentId,
+}) {
   const currField = fieldsObj[label];
   if (!currField) return <></>;
   return (
@@ -61,6 +69,7 @@ function Page({ newData = {}, setNewData, fieldsObj, choiceQuery }) {
                   value={newData[item]}
                   disabled={true}
                   fieldsObj={fieldsObj}
+                  parentId={newData["id"]}
                 />
               </div>
             );

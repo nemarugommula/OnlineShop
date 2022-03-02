@@ -18,12 +18,37 @@ function Choice({
   useEffect(() => {
     const request = requestBuilder(getAuthHeaders(), "GET", null, null);
     if (Object.keys(queryObj).length > 0) endPoint += "?";
+
     const enqQueryURL =
-      "http://localhost:5000/api/" + endPoint + encodeQuery(queryObj);
+      "https://shopfortyfive.herokuapp.com/api/" +
+      endPoint +
+      encodeQuery(queryObj);
     fetch(enqQueryURL, request)
       .then((res) => res.json())
       .then((response) => {
-        setValue(response);
+        const found = response.reduce((status, item) => {
+          if (status) return status;
+          return item.id == defValue;
+        }, false);
+        if (defValue && !found) {
+          const parentIdUrl =
+            "https://shopfortyfive.herokuapp.com/api/" +
+            endPoint +
+            "id=" +
+            defValue;
+          fetch(parentIdUrl, request)
+            .then((parRes) => parRes.json())
+            .then((parent) => {
+              console.log("parent : " + JSON.stringify(parent));
+              console.log("response  : " + JSON.stringify(response));
+
+              response = [...response, parent[0]];
+
+              setValue(response);
+            });
+        } else {
+          setValue(response);
+        }
       })
       .catch((err) => {
         console.log("error " + err);

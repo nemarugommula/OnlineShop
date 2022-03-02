@@ -7,12 +7,10 @@ import Layout from "../../../components/admin/Layout";
 
 function Categories() {
   return (
-     <Layout>
-       <List
-         endPoint="categories"
-         title="Categories"
-       />
-     </Layout>);
+    <Layout active="Categories">
+      <List endPoint="categories" title="Categories" />
+    </Layout>
+  );
 }
 
 export default Categories;

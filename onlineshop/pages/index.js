@@ -26,7 +26,11 @@ export default function Home() {
     <div className="bg-slate-100">
       <Meta />
       <Navbar user={data.user} />
-      {data ? <CategoryHeaderList categories={data.categories} /> : ""}
+      {data && data.categories && data.categories.length > 0 ? (
+        <CategoryHeaderList categories={data.categories} />
+      ) : (
+        ""
+      )}
 
       <main className="max-w-screen-2xl mx-auto my-1">
         <Carousel

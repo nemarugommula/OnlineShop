@@ -21,7 +21,7 @@ function List({
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    let url = "http://localhost:5000/api/" + endPoint;
+    let url = "https://shopfortyfive.herokuapp.com/api/" + endPoint;
     console.log(" url : " + url);
     if (includeRelationQuery) url += "?" + includeRelationQuery;
     console.log("url : " + url);
@@ -37,7 +37,10 @@ function List({
         setLoading(false);
       });
 
-    fetch("http://localhost:5000/api/site?table=" + endPoint, request)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/site?table=" + endPoint,
+      request
+    )
       .then((res) => res.json())
       .then((response) => {
         setModelData(response);

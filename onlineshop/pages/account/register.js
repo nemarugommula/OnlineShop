@@ -94,7 +94,10 @@ function Register() {
 
     setLoading(true);
     const request = requestOptions(body);
-    fetch("http://localhost:5000/api/auth/email/register", request)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/auth/email/register",
+      request
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.status == 201) {

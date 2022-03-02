@@ -14,6 +14,7 @@ function Searchbar({ searchHistory = null }) {
         />
         <button
           onClick={() => {
+            if (!searchKey) return;
             Router.push({
               pathname: "/filter",
               query: {
@@ -21,7 +22,7 @@ function Searchbar({ searchHistory = null }) {
               },
             });
           }}
-          className="bg-slate-50 px-2 focus:outline-none"
+          className="hover:bg-slate-200 active:bg-slate-300 hover:text-slate-50 bg-slate-50 px-3 focus:outline-none"
         >
           <SearchIcon className="h-5 w-5 text-primary" />
         </button>

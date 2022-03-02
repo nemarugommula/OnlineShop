@@ -3,8 +3,8 @@ import Layout from "../../../components/admin/Layout";
 
 function Inventory() {
   return (
-    <Layout>
-      <List  endPoint="inventory" title="Inventory" />
+    <Layout active="Inventory">
+      <List endPoint="inventory" title="Inventory" />
     </Layout>
   );
 }

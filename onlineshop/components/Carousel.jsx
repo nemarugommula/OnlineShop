@@ -4,8 +4,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import campaigns from "../data_utils/campaignDataFiller";
 import { useRouter } from "next/router";
 
-function Slider({ data = campaigns, apply, ...props }) {
+function Slider({ data=[], apply, ...props }) {
   const router = useRouter();
+  console.log("data : " + JSON.stringify(data));
+  if (data && data.length == 0) {
+    data = campaigns;
+  }
   return (
     <Carousel
       onClickItem={(index) => {
@@ -16,7 +20,7 @@ function Slider({ data = campaigns, apply, ...props }) {
       {...props}
     >
       {data.map((i, index) => (
-        <img className="w-full h-full" key={index} style={apply} src={i.url} />
+        <img className="w-full h-full object-cover" key={index} style={apply} src={i.url} />
       ))}
     </Carousel>
   );

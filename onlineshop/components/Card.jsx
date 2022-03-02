@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 function Card({ product }) {
   return (
-    <div className="shadow-sm shadow-gray-500 snap-center  overflow-hidden pb-2 rounded-sm m-3 shrink-0">
+    <div className="shadow-sm shadow-gray-500 snap-center   overflow-hidden pb-2 rounded-sm m-3 shrink-0">
       <Link href={`/products/${product.id}`}>
         <a className="block">
           <div className="w-72 overflow-hidden">

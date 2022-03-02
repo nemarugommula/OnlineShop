@@ -32,7 +32,7 @@ function ImageSlideShow({
 
     const request = requestBuilder(getAuthHeaders(), "GET", null, null);
     fetch(
-      "http://localhost:5000/api/image?table_name=" +
+      "https://shopfortyfive.herokuapp.com/api/image?table_name=" +
         table_name +
         "&record_id=" +
         record_id,
@@ -71,12 +71,15 @@ function ImageSlideShow({
       url: location,
       name: key.split("/")[1],
     };
+    setLoading(true);
+
     const request = requestBuilder(getAuthHeaders(), "POST", null, reqBody);
-    fetch("http://localhost:5000/api/image", request)
+    fetch("https://shopfortyfive.herokuapp.com/api/image", request)
       .then((res) => res.json())
       .then((response) => {
         console.log(" successfully uploaded to Data base");
         setReload((prev) => !prev);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("Failed to upload to data base" + err);
@@ -120,7 +123,7 @@ function ImageSlideShow({
 
   function deleteInDb(imgId) {
     const request = requestBuilder(getAuthHeaders(), "DELETE", null, null);
-    fetch("http://localhost:5000/api/image?id=" + imgId, request)
+    fetch("https://shopfortyfive.herokuapp.com/api/image?id=" + imgId, request)
       .then((res) => res.json())
       .then((response) => {
         console.log(" sucessfully deleted in db");
@@ -135,17 +138,22 @@ function ImageSlideShow({
       console.log(" pleas select atlease one image to make it default");
     } else {
       const url = checkboxselected[0].url;
+      setLoading(true);
       const request = requestBuilder(getAuthHeaders(), "PUT", null, {
         picture: url,
       });
       fetch(
-        "http://localhost:5000/api/" + table_name + "?id=" + record_id,
+        "https://shopfortyfive.herokuapp.com/api/" +
+          table_name +
+          "?id=" +
+          record_id,
         request
       )
         .then((res) => res.json())
         .then((response) => {
           console.log(" sucessfully update image url  in db");
           setReload((prev) => !prev);
+          setLoading(false);
         })
         .catch((err) => console.log(err));
     }
@@ -158,10 +166,12 @@ function ImageSlideShow({
         record_id,
         url: imgObj.url,
       };
+      setLoading(true);
       const request = requestBuilder(getAuthHeaders(), "POST", null, reqBody);
-      fetch("http://localhost:5000/api/campaigns", request)
+      fetch("https://shopfortyfive.herokuapp.com/api/campaigns", request)
         .then((response) => response.json())
         .then((res) => {
+          setLoading(false);
           console.log("crated a campaign for " + imgObj.url);
         })
         .catch((err) => console.log(err));

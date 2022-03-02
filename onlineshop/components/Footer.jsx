@@ -48,13 +48,16 @@ function Footer() {
         </div>
 
         <div className="font-bold text-orange-500">
-          <h1>{navbarData.footer.center}</h1>
+          <h1 className="text-lg font-semibold">
+            copyright @
+            <span className="bg-primary px-2 mx-2  py-1 rounded-sm ">
+              <span className=" text-slate-50 font-extrabold">FORTY</span>{" "}
+              <span className=" text-slate-50 text-xl font-extrabold">5</span>
+            </span>
+            2022
+          </h1>
         </div>
-        <div className="flex gap-2">
-          {navbarData.footer.right.map((logo) => (
-            <h1 key={logo}>{logo}</h1>
-          ))}
-        </div>
+        <div className="flex gap-2"></div>
       </div>
     </footer>
   );

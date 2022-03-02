@@ -8,6 +8,7 @@ import ProductLine from "../../components/Productline";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Card from "../../components/Card";
+import Back from "../../components/utils/Back";
 import useFetch, {
   requestBuilder,
   getAuthHeaders,
@@ -27,7 +28,7 @@ function Category() {
     const request = requestBuilder(getAuthHeaders(), "GET", null, null);
 
     let url =
-      "http://localhost:5000/api/categories?id=" +
+      "https://shopfortyfive.herokuapp.com/api/categories?id=" +
       router.query.id +
       "&" +
       encodeQuery(inclueProductQuery);
@@ -46,13 +47,14 @@ function Category() {
     <div className="bg-slate-50 flex h-screen w-screen flex-col">
       <Navbar />
       <main className="mt-2 flex-1 w-full shadow-sm   bg-white max-w-screen-2xl mx-auto">
-        <div className="p-5 inline-block ">
-          <button onClick={() => router.back()}>{"< "}Back</button>
-        </div>
+        <Back padding="py-2" border="border-b" />
         <div className="flex-1">
           {category ? (
-            <div className="flex border-2 ">
-              <img src={category.picture} className="w-56 aspect-square" />
+            <div className="flex border-b ">
+              <img
+                src={category.picture}
+                className="w-56 aspect-square object-cover"
+              />
               <div className="p-5">
                 <h1 className="text-2xl font-bold ">{category.name}</h1>
                 <p>Detials of the category or the description </p>
@@ -61,13 +63,15 @@ function Category() {
           ) : (
             ""
           )}
-          <div className="flex gap-4  flex-wrap p-2">
+          <div className="">
             {category ? (
-              <div clasName="w-full">
+              <div clasName="w-full ">
                 {category["product"].length > 0 ? (
-                  category["product"].map((product) => (
-                    <Card key={product.id} product={product} />
-                  ))
+                  <div className="flex">
+                    {category["product"].map((product) => (
+                      <Card key={product.id} product={product} />
+                    ))}
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center">
                     <div className="w-[60%] aspect-video">

@@ -8,7 +8,7 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-function Productline({ lineTag, products }) {
+function Productline({ lineTag, products = [] }) {
   const reference = useRef();
 
   const handle = () => {
@@ -30,12 +30,23 @@ function Productline({ lineTag, products }) {
         ref={reference}
         className="pl-2 group relative flex overflow-x-hidden scroll-smooth flex-nowrap  snap-x"
       >
-        {products.map((product, index) => (
-          <Card key={index} product={product} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <Card key={index} product={product} />
+          ))
+        ) : (
+          <div className="flex py-5 w-full items-center justify-center">
+            <div className="w-56 aspect-video">
+              <img src="/nodata.svg " />
+            </div>
+            <h1 className="text-center text-2xl ml-5 font-light mt-4">
+              No Products found in {lineTag}!!
+            </h1>
+          </div>
+        )}
         <button
           onClick={handle}
-          className="hover:bg-slate-100 absolute active:bg-slate-200 py-5 px-1 h-[50%] top-1/2 -translate-y-1/2 z-10 rounded-l-md shadow-xl bg-slate-50 text-primary  right-0 opacity-0  group-hover:opacity-100 "
+          className="hover:bg-slate-100 absolute active:bg-slate-200 py-5 px-1 h-[50%] top-1/2 -translate-y-1/2 z-3 rounded-l-md shadow-xl bg-slate-50 text-primary  right-0 opacity-0  group-hover:opacity-100 "
         >
           <ChevronDoubleRightIcon className=" text-gray-800 h-9 w-9" />
         </button>

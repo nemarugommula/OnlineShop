@@ -12,6 +12,7 @@ function Capture({
   choiceQuery = {},
   value = "",
   disabled,
+  parentId,
 }) {
   if (type == "input") {
     return (

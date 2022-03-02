@@ -27,7 +27,10 @@ export default function Paymentpage() {
         console.log(res);
         const reqObj = { ...res };
         const request = requestBuilder(getAuthHeaders(), "POST", null, reqObj);
-        fetch("http://localhost:5000/api/payment/payment_details", request)
+        fetch(
+          "https://shopfortyfive.herokuapp.com/api/payment/payment_details",
+          request
+        )
           .then((response) => response.json())
           .then((res) => {
             console.log(res);

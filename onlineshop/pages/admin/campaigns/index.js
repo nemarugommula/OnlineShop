@@ -4,7 +4,7 @@ import Layout from "../../../components/admin/Layout";
 function Campaigns() {
   return (
     <div>
-      <Layout>
+      <Layout active="Campaigns">
         <List endPoint="campaigns" title="Campaigns" />
       </Layout>
     </div>

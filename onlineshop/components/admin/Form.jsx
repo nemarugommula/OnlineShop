@@ -8,7 +8,7 @@ import useFetch, {
   encodeQuery,
   decodeQuery,
 } from "../../hooks/useFetch";
-
+import Back from "../utils/Back";
 import {
   TrashIcon,
   SaveAsIcon,
@@ -31,7 +31,10 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
     setOperation(true);
     const request = requestBuilder(getAuthHeaders(), "PUT", null, newData);
     fetch(
-      "http://localhost:5000/api/" + endPoint + "?id=" + router.query.id,
+      "https://shopfortyfive.herokuapp.com/api/" +
+        endPoint +
+        "?id=" +
+        router.query.id,
       request
     )
       .then((res) => res.json())
@@ -49,13 +52,17 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
 
     const request = requestBuilder(getAuthHeaders(), "DELETE", null, null);
     fetch(
-      "http://localhost:5000/api/" + endPoint + "?id=" + router.query.id,
+      "https://shopfortyfive.herokuapp.com/api/" +
+        endPoint +
+        "?id=" +
+        router.query.id,
       request
     )
       .then((res) => res.json())
       .then((response) => {
         console.log(" response >>>> >>>>> " + JSON.stringify(response));
         setOperation(false);
+        router.back();
       })
       .catch((err) => {
         console.log("error " + JSON.stringify(err));
@@ -68,7 +75,8 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
     setLoading(true);
     const request = requestBuilder(getAuthHeaders(), "GET", null, null);
     const id = router.query.id;
-    let url = "http://localhost:5000/api/" + endPoint + "?id=" + id;
+    let url =
+      "https://shopfortyfive.herokuapp.com/api/" + endPoint + "?id=" + id;
     console.log(" form url : " + url);
     fetch(url, request)
       .then((res) => res.json())
@@ -80,7 +88,10 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
         console.log("error " + err);
       });
 
-    fetch("http://localhost:5000/api/site?table=" + endPoint, request)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/site?table=" + endPoint,
+      request
+    )
       .then((res) => res.json())
       .then((response) => {
         let fb = {};
@@ -100,6 +111,7 @@ function Form({ endPoint, choiceQuery, showImageGallery }) {
   }, [router.query.id, operating]);
   return (
     <Layout>
+      <Back border="border-b" padding="py-2" />
       <div className="flex items-center text-slate-50 shadow-sm mb-4 justify-between  p-2 bg-white">
         <div className="text-gray-600 flex items-center justify-center gap-2 capitalize font-semibold text-xl">
           <InformationCircleIcon className="w-5 h-5" />

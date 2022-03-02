@@ -30,8 +30,8 @@ const dataFormat = {
 
 function makeRequest(query) {
   const request = requestBuilder(getAuthHeaders(), "GET", null, null);
-  return fetch("http://localhost:5000/api" + query, request).then((data) =>
-    data.json()
+  return fetch("https://shopfortyfive.herokuapp.com/api" + query, request).then(
+    (data) => data.json()
   );
 }
 
@@ -158,7 +158,6 @@ export function useUserData() {
   if (typeof window != "undefined") {
     userId = localStorage.getItem("userId");
   }
-  console.log(" userId : " + userId);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   useEffect(async () => {
@@ -166,6 +165,14 @@ export function useUserData() {
     setLoading(false);
   }, []);
   return [loading, user];
+}
+
+export function getUserid() {
+  let userId;
+  if (typeof window != "undefined") {
+    userId = localStorage.getItem("userId");
+  }
+  return userId;
 }
 
 export default useHomepageData;

@@ -3,7 +3,7 @@ import Layout from "../../../components/admin/Layout";
 
 function Payments() {
   return (
-    <Layout>
+    <Layout active="Payments">
       <List endPoint="payments" title="Payments" />
     </Layout>
   );

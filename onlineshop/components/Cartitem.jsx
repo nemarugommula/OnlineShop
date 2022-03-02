@@ -11,7 +11,10 @@ function getFinalPrice(price, discount) {
 function Cartitem({ product, cartitem }) {
   function removeCartItemHandler() {
     const request = requestBuilder(getAuthHeaders(), "DELETE", null, null);
-    fetch("http://localhost:5000/api/cart?id=" + cartitem.id, request)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/cart?id=" + cartitem.id,
+      request
+    )
       .then((response) => response.json())
       .then((res) => {
         console.log(" deleted successfully");
@@ -20,7 +23,10 @@ function Cartitem({ product, cartitem }) {
 
   function addToCart(reqBody) {
     const request = requestBuilder(getAuthHeaders(), "PUT", null, reqBody);
-    fetch("http://localhost:5000/api/cart?id=" + cartitem.id, request)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/cart?id=" + cartitem.id,
+      request
+    )
       .then((data) => data.json())
       .then((res) => {
         console.log(" updated cart");

@@ -3,14 +3,9 @@ import Layout from "../../components/admin/Layout";
 
 function Admin() {
   return (
-    <Layout>
+    <Layout active="Dashboard">
       <div className="flex justify-center items-center">
-
-      <img
-        className="block w-[60%] aspect-video"
-        src="/dashboard.svg"
-      />
-
+        <img className="block w-[60%] aspect-video" src="/dashboard.svg" />
       </div>
     </Layout>
   );

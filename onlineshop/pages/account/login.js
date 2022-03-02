@@ -91,7 +91,10 @@ function Login() {
       }),
     };
     if (loading) return;
-    fetch("http://localhost:5000/api/auth/email/login", requestOptions)
+    fetch(
+      "https://shopfortyfive.herokuapp.com/api/auth/email/login",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.status == 200) {
