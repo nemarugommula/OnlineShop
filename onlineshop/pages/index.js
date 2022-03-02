@@ -12,7 +12,8 @@ import { useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import useHomepageData from "../data_utils/homePageFetch";
 import CategoryHeaderList from "../components/CategoryHeaderList";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 export default function Home() {
   const [loading, data] = useHomepageData();
   useEffect(() => {
@@ -56,7 +57,20 @@ export default function Home() {
               />
             ))
           ) : (
-            <p>loading</p>
+            <SkeletonTheme baseColor="#E8E7E8" highlightColor="#FFFFFF">
+              <Skeleton className="h-40" count={1} />
+              <Skeleton className="h-96" count={1} />
+
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+            </SkeletonTheme>
           )}
         </div>
       </main>

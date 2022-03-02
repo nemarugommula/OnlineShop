@@ -10,7 +10,8 @@ import Link from "next/link";
 import Back from "../../components/utils/Back";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rating } from "react-simple-star-rating";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import useFetch, {
   requestBuilder,
   getAuthHeaders,
@@ -248,7 +249,24 @@ function Product() {
         <Back padding="py-1" />
       </div>
       {!data ? (
-        "Loading"
+        <SkeletonTheme baseColor="#E8E7E8" highlightColor="#FFFFFF">
+          <div className="mx-auto max-w-screen-xl felx px-10">
+            <Skeleton className="h-96" count={1} />
+            <div>
+              <Skeleton className="h-40" count={1} />
+
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+              <div>
+                <Skeleton className="h-48" count={1} />
+              </div>
+            </div>
+          </div>
+        </SkeletonTheme>
       ) : (
         <main
           className="flex gap-5 max-w-screen-xl  
