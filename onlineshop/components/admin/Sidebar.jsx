@@ -64,7 +64,10 @@ function Sidebar({ active }) {
               >
                 <a className="flex items-center gap-3 ">
                   {getTailwindIcon(item.icon)}
-                  <label className="flex-1 cursor-pointer text-left"> {item.label}</label>
+                  <label className="flex-1 cursor-pointer text-left">
+                    {" "}
+                    {item.label}
+                  </label>
                 </a>
               </li>
             </Link>
@@ -75,23 +78,20 @@ function Sidebar({ active }) {
         <Avatar picture={user && user.picture} />
         <div className="font-semibold items-end text-xl tracking-widest">
           <h1>{user && user.username}</h1>
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
+          <button
             onClick={() => {
               localStorage.removeItem("authorization");
               localStorage.removeItem("userId");
               console.log(" logout ");
               router.reload(window.location.pathname);
             }}
-            className="group-hover:block hover:bg-white active:bg-slate-100 text-black hidden absolute top-0 right-0 bottom-0 left-0"
+            className="group-hover:block hover:bg-white active:bg-slate-100 w-full text-black hidden absolute top-0 right-0 bottom-0 left-0"
           >
             <div className="flex gap-2 items-center justify-center">
               <h3 className="tracking-wide">LOGOUT</h3>{" "}
               <LogoutIcon className="w-6 h-6 text-primary  " />
             </div>
-          </motion.button>
+          </button>
         </div>
       </div>
     </div>
