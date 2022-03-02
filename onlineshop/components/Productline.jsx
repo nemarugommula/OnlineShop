@@ -46,7 +46,7 @@ function Productline({ lineTag, products = [] }) {
         )}
         <button
           onClick={handle}
-          className="hover:bg-slate-100 absolute active:bg-slate-200 py-5 px-1 h-[50%] top-1/2 -translate-y-1/2 z-3 rounded-l-md shadow-xl bg-slate-50 text-primary  right-0 opacity-0  group-hover:opacity-100 "
+          className="hover:bg-slate-100 sticky active:bg-slate-200 py-5 px-1 h-[50%] top-1/2 -translate-y-1/2 z-3 rounded-l-md shadow-xl bg-slate-50 text-primary  right-0 opacity-0  group-hover:opacity-100 "
         >
           <ChevronDoubleRightIcon className=" text-gray-800 h-9 w-9" />
         </button>
