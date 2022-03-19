@@ -138,11 +138,7 @@ function useHomepageData() {
     const trending = getTrending(products);
     const newLaunched = getNew(products);
     const moreToExplore = getMoreToExplore(products);
-    dataFormat.products = {
-      "Deals of the day": dealsOfTheDay,
-      Trending: trending,
-      "Newly launched": newLaunched,
-    };
+    dataFormat.products = products;
     dataFormat.campaigns = await getAllCampaigns();
     if (user_id) dataFormat.user = await getRequireUserDetails(user_id);
     if (user_id && moreToExplore.length > 0)

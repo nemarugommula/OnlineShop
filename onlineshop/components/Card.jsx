@@ -15,11 +15,11 @@ function Card({ product }) {
               src={product.picture}
             />
           </div>
-          <div className="px-2 w-full">
-            <h1 className="font-light tracking-widest leading-10 text-lg text-grey-500">
-              {product.name} - <span className="text-orange-300">rating</span>
+          <div className="px-2 w-72">
+            <h1 className="font-light tracking-widest leading-10 text-lg truncate text-grey-500">
+              {product.name}
             </h1>
-            <h3 className="text-primary">{product.price}</h3>
+            <h3 className="text-green-500">{product.price} Rs.</h3>
           </div>
         </a>
       </Link>

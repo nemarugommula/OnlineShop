@@ -67,12 +67,12 @@ function Navbar() {
   }
 
   return (
-    <div className="sticky top-0 z-10 bg-primary">
-      <div className="flex items-center justify-around  px-2  max-w-screen-xl gap-1 mx-auto ">
+    <div className="sticky top-0 z-10 bg-white">
+      <div className="flex items-center justify-between  px-2  max-w-screen-xl gap-1 mx-auto ">
         <div className="text-slate-100 text-xl font-bold p-2 ">
           <Link href="/">
             <a className=" flex gap-1 items-center justify-center">
-              <h1 className="text-2xl text-slate-50 tracking-tight font-extrabold	">
+              <h1 className="text-2xl  text-primary tracking-tight font-extrabold	">
                 FORTY
               </h1>
               <div className="text-2xl px-1 text-orange-500 rounded-sm border-2 font-black border-orange-500 ">
@@ -81,14 +81,14 @@ function Navbar() {
             </a>
           </Link>
         </div>
-        <Searchbar user={user} />
-        <div className="flex justify-center items-center gap-5 text-slate-50">
+
+        <div className="flex justify-center items-center gap-5">
           {user ? (
             <button
               onClick={() => {
                 setuserdropdown((prev) => !prev);
               }}
-              className="group hover:bg-blue-600 p-2 relative"
+              className="group  p-2 relative"
             >
               <div className="flex items-center justify-center ">
                 <Avatar picture={navObject.profile_picture} />
@@ -96,9 +96,9 @@ function Navbar() {
                   {navObject.username}
                 </h3>
                 {userDropdown ? (
-                  <ChevronUpIcon className=" h-5 w-5  text-white" />
+                  <ChevronUpIcon className=" h-5 w-5  text-primary" />
                 ) : (
-                  <ChevronDownIcon className=" h-5 w-5   text-white" />
+                  <ChevronDownIcon className=" h-5 w-5   text-primary" />
                 )}
               </div>
               {userDropdown ? (
@@ -108,7 +108,7 @@ function Navbar() {
                       item.code ? (
                         <button
                           key={index}
-                          className="py-2 hover:bg-slate-200 w-full active:bg-slate-300"
+                          className="py-2 "
                           onClick={(e) => {
                             e.preventDefault();
                             item.code();
@@ -147,33 +147,21 @@ function Navbar() {
             </Link>
           )}
 
-          <button className="group  relative">
-            <div className="flex items-center justify-center ">
-              <h3 className="tracking-wide">More</h3>
-              <ChevronUpIcon className=" h-5 w-5 hidden group-focus:block text-white" />
-              <ChevronDownIcon className=" h-5 w-5  group-focus:hidden text-white" />
-            </div>
-            <div className="mt-3 absolute -translate-x-1/2 left-1/2 rounded-md font-light  text-sm shadow-md   hidden group-focus:block">
-              <div className="bg-slate-50 text-gray-900">
-                <Link href="/customer">
-                  <a className="block hover:bg-slate-200 active:bg-slate-400 last-of-type:min-w-[10em] px-3 py-2">
-                    24X7 Customer service
-                  </a>
-                </Link>
-                <Link href="/downlaod">
-                  <a className="block hover:bg-slate-200 active:bg-slate-400 last-of-type:min-w-[10em] px-3 py-2">
-                    Download App
-                  </a>
-                </Link>
-              </div>
-            </div>
+          <button className="border-r-2 px-3">
+            <Link href="/downlaod">
+              <a className="block hover:text-primary ">About us</a>
+            </Link>
           </button>
-
+          <button className="">
+            <Link href="/customer">
+              <a className="block hover:text-primary">Our mission</a>
+            </Link>
+          </button>
           <button
             onClick={cartClickHandler}
             className="flex items-center relative justify-center"
           >
-            <ShoppingCartIcon className="h-5 w-5  text-white mr-1" />
+            <ShoppingCartIcon className="h-5 w-5  text-primary mr-1" />
             {user && user.navObject.cart ? (
               <span className=" absolute  -top-2 -right-1 flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-orange-200 opacity-75"></span>
