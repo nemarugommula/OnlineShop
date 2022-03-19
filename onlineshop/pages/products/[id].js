@@ -7,10 +7,21 @@ import useUserData from "../../data_utils/homePageFetch";
 import ProductLine from "../../components/Productline";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Discount from "../../components/utils/Discount";
+
 import Back from "../../components/utils/Back";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rating } from "react-simple-star-rating";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import {
+  ArrowRightIcon,
+  AnnotationIcon,
+  InformationCircleIcon,
+  AcademicCapIcon,
+  StarIcon,
+  CurrencyRupeeIcon,
+  SparklesIcon,
+} from "@heroicons/react/solid";
 import "react-loading-skeleton/dist/skeleton.css";
 import useFetch, {
   requestBuilder,
@@ -152,6 +163,7 @@ function Product() {
     const productIncludeQuery = {
       include: {
         review: "true",
+        discount: "true",
       },
     };
 
@@ -167,6 +179,7 @@ function Product() {
       .then((res) => {
         setLoading(false);
         setData(res[0]);
+        console.log(" -------- ***** > " + JSON.stringify(res[0]));
         getRelatedProductsOfCategory(res[0].category_id);
       });
 
@@ -315,81 +328,83 @@ function Product() {
               </button>
             </div>
           </div>
-          <div className="shadow-sm px-2">
+          <div className="shadow-sm p-2">
             <div>
-              <h1 className="text-2xl font-semibold mb-2">{data.name}</h1>
+              <h1 className="underline decoration-gray-600 text-2xl font-semibold mb-2">
+                {data.name}
+              </h1>
               <p className="text-green-500 mb-1">
-                4.31,351 Ratings & 125 Reviews
+                {data.review &&
+                  data.review.reduce((agg, item) => {
+                    return agg + parseInt(item.rating);
+                  }, 0) / data.review.length}{" "}
+                Ratings & {data.review && data.review.length} Reviews
               </p>
-              <p className="text-2xl font-bold px-2  text-gray-700">
-                {data.price}{" "}
-                <span className="text-lg text-gray-400">- 10% off</span>
+              <p className=" flex items-center justify-start ">
+                <CurrencyRupeeIcon className="w-10 h-10 mr-2 text-yellow-400 " />
+                <div className="text-2xl font-bold text-gray-400">
+                  <Discount
+                    price={data.price}
+                    percent={data.discount.discount_percent}
+                  />
+                </div>
               </p>
             </div>
 
-            <div className="">
-              <h1 className="text-xl font-semibold ">About Product</h1>
+            <div className="pt-3">
+              <h1 className="text-xl font-semibold ">
+                {" "}
+                <InformationCircleIcon className="w-5 mr-2 h-5  inline" />
+                About product
+              </h1>
+              <p className=" text-md font-light py-2">{data.basic_info}</p>
+            </div>
+
+            <div className="pt-3">
+              <h1 className="text-xl font-semibold ">
+                <SparklesIcon className="w-5 mr-2 h-5 text-green-500 inline" />
+                Benfits
+              </h1>
               <ul className="text-md font-light list-inside px-2">
-                <li>detial 1 </li>
-                <li>detial 1 </li>
-                <li>detial 1 </li>
-                <li>detial 1 </li>
+                <ul className="text-md font-light list-inside px-2">
+                  {data.benfits &&
+                    data.benfits.split("nextline").map((benf, index) => (
+                      <li className="text-gray-600 py-2 " key={index}>
+                        <ArrowRightIcon className="w-5 h-5 mr-2 text-green-500 inline" />
+                        {benf}
+                      </li>
+                    ))}
+                </ul>
               </ul>
             </div>
 
-            <div className="">
-              <h1 className="text-xl font-semibold ">Benfits</h1>
+            <div className="pt-3">
+              <h1 className="text-xl font-semibold ">
+                <AcademicCapIcon className="w-5 h-5 text-primary mr-2  inline" />
+                Scientific Research
+              </h1>
               <ul className="text-md font-light list-inside px-2">
-                <li>benfit 1 </li>
-                <li>benfit 1 </li>
-                <li>benfit 1 </li>
-                <li>benfit 1 </li>
+                <ul className="text-md font-light list-inside p-2">
+                  {data.scientific_evidence &&
+                    data.scientific_evidence
+                      .split("nextline")
+                      .map((res, index) => (
+                        <li className="text-gray-600 mr-2 py-2 " key={index}>
+                          <StarIcon className="w-5 h-5 text-primary inline" />
+                          {res.split("link")[0].trim()}
+                          {res.split("link")[1] && (
+                            <a
+                              className="text-primary ml-2 font-bold text-sm"
+                              href={res.split("link")[1]}
+                            >
+                              link
+                            </a>
+                          )}
+                        </li>
+                      ))}
+                </ul>
               </ul>
             </div>
-            <p className="">
-              <ul className="flex flex-col gap-3 my-2">
-                <li>
-                  Available offers Combo OfferBuy 2-3 items save Buy 4 or more
-                  save 10%See all productsT&C Bank OfferFlat ₹50 Instant
-                  Cashback on Paytm Wallet. Min Order Value ₹500. Valid once per
-                  Paytm accountT&C Bank Offer5% Unlimited Cashback on Flipkart
-                  Axis Bank Credit CardT&C Partner OfferSign up for Flipkart Pay
-                  Later and get Flipkart Gift Card worth ₹100*Know More
-                </li>
-                <li>
-                  Available offers Combo OfferBuy 2-3 items save 5%; Buy 4 or
-                  more save 10%See all productsT&C Bank OfferFlat ₹50 Instant
-                  Cashback on Paytm Wallet. Min Order Value ₹500. Valid once per
-                  Paytm accountT&C Bank Offer5% Unlimited Cashback on Flipkart
-                  Axis Bank Credit CardT&C Partner OfferSign up for Flipkart Pay
-                  Later and get Flipkart Gift Card worth ₹100*Know More
-                </li>
-                <li>
-                  Available offers Combo OfferBuy 2-3 items save 5%; Buy 4 or
-                  more save 10%See all productsT&C Bank OfferFlat ₹50 Instant
-                  Cashback on Paytm Wallet. Min Order Value ₹500. Valid once per
-                  Paytm accountT&C Bank Offer5% Unlimited Cashback on Flipkart
-                  Axis Bank Credit CardT&C Partner OfferSign up for Flipkart Pay
-                  Later and get Flipkart Gift Card worth ₹100*Know More
-                </li>
-                <li>
-                  Available offers Combo OfferBuy 2-3 items save 5%; Buy 4 or
-                  more save 10%See all productsT&C Bank OfferFlat ₹50 Instant
-                  Cashback on Paytm Wallet. Min Order Value ₹500. Valid once per
-                  Paytm accountT&C Bank Offer5% Unlimited Cashback on Flipkart
-                  Axis Bank Credit CardT&C Partner OfferSign up for Flipkart Pay
-                  Later and get Flipkart Gift Card worth ₹100*Know More
-                </li>
-                <li>
-                  Available offers Combo OfferBuy 2-3 items save 5%; Buy 4 or
-                  more save 10%See all productsT&C Bank OfferFlat ₹50 Instant
-                  Cashback on Paytm Wallet. Min Order Value ₹500. Valid once per
-                  Paytm accountT&C Bank Offer5% Unlimited Cashback on Flipkart
-                  Axis Bank Credit CardT&C Partner OfferSign up for Flipkart Pay
-                  Later and get Flipkart Gift Card worth ₹100*Know More
-                </li>
-              </ul>
-            </p>
 
             <div className="mt-2 shadow-sm bg-slate-50">
               <div className="flex items-center justify-between px-2 py-3 ">

@@ -6,7 +6,12 @@ import Productline from "../components/Productline";
 import Footer from "../components/Footer";
 import categories from "../data_utils/categoryDataFiller";
 import Image from "next/image";
-import { ArrowRightIcon } from "@heroicons/react/solid";
+import Link from "next/link";
+import {
+  ArrowRightIcon,
+  AnnotationIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/solid";
 import Navlinksdata from "../data_utils/navLinkDataFiller";
 import { useContext, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -30,11 +35,6 @@ export default function Home() {
     <div className="bg-slate-50">
       <Meta />
       <Navbar user={data.user} />
-      {/* {data && data.categories && data.categories.length > 0 ? (
-        <CategoryHeaderList categories={data.categories} />
-      ) : (
-        ""
-      )} */}
 
       <main className="">
         <Carousel
@@ -53,7 +53,7 @@ export default function Home() {
         <div>
           {data && data.products ? (
             <div className="mx-auto bg-white ">
-              <div className="bg-gradient-to-r from-cyan-500 to-primary">
+              <div className="border-b">
                 <h1 className="tracking-widest p-5 uppercase text-center text-2xl font-bold">
                   Products
                 </h1>
@@ -61,7 +61,7 @@ export default function Home() {
               {data.products.map((prod, index) => (
                 <div
                   key={index}
-                  className="flex  max-w-screen-xl mx-auto justify-between bg-white my-5 shadow-sm"
+                  className="flex rounded-sm max-w-screen-xl overflow-hidden mx-auto justify-between bg-white my-5 shadow-sm"
                 >
                   <div className="w-1/3 h-96">
                     <img
@@ -69,19 +69,44 @@ export default function Home() {
                       src={prod.picture}
                     />
                   </div>
-                  <div className=" p-5 flex-1">
-                    <h1 className="racking-wides  uppercase  text-xl font-semibold">
-                      {prod.name}
-                    </h1>
+                  <div className=" px-5 flex flex-col justify-between overflow-hidden flex-1">
                     <div>
-                      <h1>Benfits : - </h1>
-                      {prod.benfits}
+                      <h1 className="racking-wides    text-2xl font-semibold">
+                        {prod.name}
+                      </h1>
+                      <p className="text-gray-600 text-lg font-semibold py-2">
+                        <InformationCircleIcon className="w-5 h-5 text-primary inline" />{" "}
+                        {prod.basic_info}
+                      </p>
+                      <ul className="text-md">
+                        {prod.benfits &&
+                          prod.benfits
+                            .split(".")
+                            .filter((ben) => {
+                              if (!ben || !ben.trim()) return false;
+                              return true;
+                            })
+                            .map((benf, index) => (
+                              <li
+                                className="font-light truncate py-1 "
+                                key={index}
+                              >
+                                <ArrowRightIcon className="w-5 h-5 text-green-500 inline" />
+                                {benf}
+                              </li>
+                            ))}
+                      </ul>
                     </div>
 
                     <div className="flex gap-2 p-2">
-                      <button className="px-3 py-2 bg-orange-500 tracking-widest  rounded-md">
-                        Know more
-                      </button>
+                      <div className="px-3 py-2 bg-orange-500 tracking-widest  rounded-md">
+                        <Link href={`/products/${prod.id}`}>
+                          <a>
+                            Know more
+                            <AnnotationIcon className="w-5 h-5 pl-1 text-gray-800 inline" />
+                          </a>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
