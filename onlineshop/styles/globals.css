@@ -19,40 +19,49 @@ a {
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 
 .control-arrow {
-background-color: whitesmoke !important;
-opacity: 1 !important;
-height:104px !important;
-width:47px !important;
-top:50% !important;
-transform: translateY(-50%);
-padding-top: 5px !important;
-padding-bottom: 5px !important;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  background-color: whitesmoke !important;
+  opacity: 1 !important;
+  height: 104px !important;
+  width: 47px !important;
+  top: 50% !important;
+  transform: translateY(-50%);
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
-.carousel .control-next.control-arrow{
+.carousel .control-next.control-arrow {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.carousel .control-prev.control-arrow{
+.carousel .control-prev.control-arrow {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .carousel .control-next.control-arrow:before {
-  content:">"!important;
-  border-left:0px !important;
-  font-size:30px !important;
-  color:black !important;
-  padding-left:5px !important;
+  content: ">" !important;
+  border-left: 0px !important;
+  font-size: 30px !important;
+  color: black !important;
+  padding-left: 5px !important;
 }
 
 .carousel .control-prev.control-arrow:before {
-  border-right:0px !important;
-  content:"<"!important;
-  font-size:30px !important;
-  color:black !important;
-  padding-right:5px !important;
-
+  border-right: 0px !important;
+  content: "<" !important;
+  font-size: 30px !important;
+  color: black !important;
+  padding-right: 5px !important;
 }
